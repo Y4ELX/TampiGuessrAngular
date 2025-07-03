@@ -1,0 +1,401 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sección hero con fondo animado */
+.hero-section {
+  flex: 1;
+  position: relative;
+  background-image: url(../assets/TampiBG.png);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+
+/* Overlay para mejorar la legibilidad */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+}
+
+/* Contenedor del contenido */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Sección del logo */
+.logo-section {
+  margin-bottom: 3rem;
+}
+
+.game-title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  letter-spacing: 2px;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  to {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.5);
+  }
+}
+
+.game-subtitle {
+  font-size: 1.5rem;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  margin-bottom: 0;
+  font-weight: 300;
+}
+
+/* Sección del menú */
+.menu-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Estilos de botones */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.2rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 320px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff5252, #e53e3e);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #26d0ce, #2fb392);
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.btn-text {
+  font-weight: 600;
+}
+
+/* Botones flotantes en las esquinas */
+.settings-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.leaderboard-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+
+
+/* Sección de play centrada */
+.play-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.play-section app-tampi-button {
+  /* Estilos especiales para el botón de play principal */
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.play-text {
+  color: #f0f0f0;
+  font-size: 1rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  margin: 0;
+}
+
+/* Información del juego */
+.game-info {
+  margin-top: 4rem;
+}
+
+.info-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 250px;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.info-card p {
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.904);
+  color: #ffffff;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Estilos para iconos SVG */
+.play-icon {
+  display: inline-block !important;
+  fill: currentColor !important;
+  color: white !important;
+  width: 50px !important;
+  height: 50px !important;
+  transition: all 0.3s ease;
+  vertical-align: middle;
+}
+
+.play-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Asegurar que el SVG se vea en botones circulares */
+app-tampi-button .play-icon {
+  pointer-events: none;
+}
+
+/* Hover effect para el icono */
+app-tampi-button:hover .play-icon {
+  transform: scale(1.1);
+}
+
+/* Estilos específicos para botones circulares con SVG */
+.tampi-button.circular .play-icon {
+  width: 2em !important;
+  height: 2em !important;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* Responsive para iconos */
+@media (max-width: 768px) {
+  .play-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 3rem;
+  }
+  
+  .game-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-width: 280px;
+  }
+  
+  .content-wrapper {
+    padding: 1rem;
+  }
+  
+  .logo-section {
+    margin-bottom: 2rem;
+  }
+  
+  .info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-card {
+    max-width: 100%;
+  }
+  
+  .settings-button,
+  .leaderboard-button {
+    top: 1rem;
+  }
+  
+  .settings-button {
+    right: 1rem;
+  }
+  
+  .leaderboard-button {
+    left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 2.5rem;
+  }
+  
+  .game-subtitle {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 250px;
+  }
+  
+  .menu-buttons {
+    gap: 1rem;
+  }
+  
+  .info-card {
+    padding: 1.5rem;
+  }
+}

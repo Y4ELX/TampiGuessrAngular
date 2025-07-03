@@ -1,0 +1,33 @@
+<button 
+  [class]="getButtonClasses()"
+  [disabled]="disabled || loading"
+  (click)="onButtonClick()"
+  type="button">
+  
+  <!-- Loader -->
+  <span class="tampi-button__loader" *ngIf="loading">
+    <svg class="tampi-button__spinner" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"/>
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" 
+              stroke-dasharray="31.416" stroke-dashoffset="31.416" opacity="0.75">
+        <animate attributeName="stroke-dashoffset" dur="2s" values="31.416;0" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </span>
+  
+  <!-- Content -->
+  <span class="tampi-button__content" [class.tampi-button__content--hidden]="loading">
+    <!-- Icon -->
+    <span class="tampi-button__icon" *ngIf="icon">
+      {{ icon }}
+    </span>
+    
+    <!-- Contenido proyectado (para SVGs o contenido personalizado) -->
+    <ng-content></ng-content>
+    
+    <!-- Text -->
+    <span class="tampi-button__text" *ngIf="text">
+      {{ text }}
+    </span>
+  </span>
+</button>

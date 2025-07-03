@@ -1,0 +1,348 @@
+/* TampiButton Component Styles */
+.tampi-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 25px;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tampi-button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Hover effect */
+.tampi-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.tampi-button:hover::before {
+  left: 100%;
+}
+
+.tampi-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tampi-button:active {
+  transform: translateY(0);
+}
+
+/* Button content */
+.tampi-button__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.tampi-button__content--hidden {
+  opacity: 0;
+}
+
+.tampi-button__icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.tampi-button__text {
+  font-weight: 600;
+}
+
+/* Loader */
+.tampi-button__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.tampi-button__spinner {
+  width: 100%;
+  height: 100%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* SIZES */
+.tampi-button--small {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  min-height: 2rem;
+}
+
+.tampi-button--medium {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  min-height: 2.5rem;
+}
+
+.tampi-button--large {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  min-height: 3rem;
+}
+
+/* COLORS */
+.tampi-button--primary {
+  background: linear-gradient(135deg, #ff6b6b, #cc302e);
+  color: white;
+}
+
+.tampi-button--primary:hover {
+  background: linear-gradient(135deg, #ff5252, #e53e3e);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.tampi-button--secondary {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  color: white;
+}
+
+.tampi-button--secondary:hover {
+  background: linear-gradient(135deg, #26d0ce, #2fb392);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+.tampi-button--success {
+  background: linear-gradient(135deg, #51cf66, #40c057);
+  color: white;
+}
+
+.tampi-button--success:hover {
+  background: linear-gradient(135deg, #40c057, #37b24d);
+  box-shadow: 0 6px 20px rgba(81, 207, 102, 0.4);
+}
+
+.tampi-button--danger {
+  background: linear-gradient(135deg, #ff6b6b, #f03e3e);
+  color: white;
+}
+
+.tampi-button--danger:hover {
+  background: linear-gradient(135deg, #f03e3e, #e03131);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.tampi-button--warning {
+  background: linear-gradient(135deg, #ffd43b, #fab005);
+  color: #1a1a1a;
+}
+
+.tampi-button--warning:hover {
+  background: linear-gradient(135deg, #fab005, #f59f00);
+  box-shadow: 0 6px 20px rgba(255, 212, 59, 0.4);
+}
+
+.tampi-button--info {
+  background: linear-gradient(135deg, #339af0, #228be6);
+  color: white;
+}
+
+.tampi-button--info:hover {
+  background: linear-gradient(135deg, #228be6, #1c7ed6);
+  box-shadow: 0 6px 20px rgba(51, 154, 240, 0.4);
+}
+
+/* STATES */
+.tampi-button--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tampi-button--disabled:hover::before {
+  left: -100% !important;
+}
+
+.tampi-button--loading {
+  cursor: wait;
+}
+
+.tampi-button--full-width {
+  width: 100%;
+}
+
+/* Soporte para botones circulares */
+.tampi-button.circular {
+  border-radius: 50% !important;
+  padding: 0 !important;
+  width: 60px;
+  height: 60px;
+  min-width: 60px !important;
+  gap: 0 !important;
+}
+
+.tampi-button.circular {
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
+  box-shadow: none !important;
+}
+
+.tampi-button.circular:hover {
+  filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3));
+}
+
+/* Drop-shadows específicas por color para botones circulares */
+.tampi-button.circular.tampi-button--primary:hover {
+  filter: drop-shadow(0 8px 25px rgba(255, 107, 107, 0.5));
+}
+
+.tampi-button.circular.tampi-button--secondary:hover {
+  filter: drop-shadow(0 8px 25px rgba(78, 205, 196, 0.5));
+}
+
+.tampi-button.circular.tampi-button--warning:hover {
+  filter: drop-shadow(0 8px 25px rgba(255, 212, 59, 0.5));
+}
+
+.tampi-button.circular.tampi-button--info:hover {
+  filter: drop-shadow(0 8px 25px rgba(51, 154, 240, 0.5));
+}
+
+.tampi-button.circular.tampi-button--success:hover {
+  filter: drop-shadow(0 8px 25px rgba(81, 207, 102, 0.5));
+}
+
+.tampi-button.circular.tampi-button--danger:hover {
+  filter: drop-shadow(0 8px 25px rgba(255, 107, 107, 0.5));
+}
+
+.tampi-button.circular .tampi-button__icon {
+  font-size: 1.5rem;
+}
+
+.tampi-button.circular .tampi-button__text {
+  display: none;
+}
+
+/* Tamaños para botones circulares */
+.tampi-button.circular.tampi-button--small {
+  width: 40px;
+  height: 40px;
+  min-width: 40px !important;
+}
+
+.tampi-button.circular.tampi-button--small .tampi-button__icon {
+  font-size: 1rem;
+}
+
+.tampi-button.circular.tampi-button--medium {
+  width: 50px;
+  height: 50px;
+  min-width: 50px !important;
+}
+
+.tampi-button.circular.tampi-button--medium .tampi-button__icon {
+  font-size: 1.25rem;
+}
+
+.tampi-button.circular.tampi-button--large {
+  width: 100px;
+  height: 100px;
+  min-width: 100px !important;
+}
+
+.tampi-button.circular.tampi-button--large .tampi-button__icon {
+  font-size: 1.75rem;
+}
+
+/* Estilos específicos para iconos SVG */
+.tampi-button svg {
+  display: inline-block !important;
+  vertical-align: middle;
+  fill: currentColor !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.tampi-button.circular svg {
+  width: 2em !important;
+  height: 2em !important;
+}
+
+.tampi-button.circular.tampi-button--small svg {
+  width: 1em !important;
+  height: 1em !important;
+}
+
+.tampi-button.circular.tampi-button--medium svg {
+  width: 1.25em !important;
+  height: 1.25em !important;
+}
+
+.tampi-button.circular.tampi-button--large svg {
+  width: 2.5em !important;
+  height: 2.5em !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tampi-button--large {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    min-height: 2.75rem;
+  }
+  
+  .tampi-button--medium {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.9rem;
+    min-height: 2.25rem;
+  }
+  
+  .tampi-button--small {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+    min-height: 2rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .tampi-button,
+  .tampi-button::before,
+  .tampi-button__content,
+  .tampi-button__spinner {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tampi-button {
+    border: 2px solid currentColor;
+  }
+}
