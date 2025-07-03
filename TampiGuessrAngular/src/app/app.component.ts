@@ -12,7 +12,7 @@ export class AppComponent {
     // Constructor simplificado
   }
 
-  // Función para iniciar el juego
+  // Función para iniciar el juegoe
   startGame() {
     console.log('Iniciando juego...');
     alert('🎮 ¡Bienvenido a TampiGuessr!\n\n🌟 Características del juego:\n• Imágenes de Street View de todo el mundo\n• Mapa interactivo para adivinar ubicaciones\n• Sistema de puntuación basado en precisión\n• Múltiples niveles de dificultad\n• Tablas de clasificación globales\n\n🚀 ¡La funcionalidad de juego estará disponible pronto!');
