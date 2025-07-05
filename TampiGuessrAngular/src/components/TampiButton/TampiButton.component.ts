@@ -9,7 +9,6 @@ export class TampiButtonComponent {
   @Input() text: string = 'Botón';
   @Input() icon: string = '';
   @Input() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' = 'primary';
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() disabled: boolean = false;
   @Input() fullWidth: boolean = false;
   @Input() loading: boolean = false;
@@ -28,9 +27,6 @@ export class TampiButtonComponent {
     
     // Color
     classes += ` tampi-button--${this.color}`;
-    
-    // Size
-    classes += ` tampi-button--${this.size}`;
     
     // States
     if (this.disabled) classes += ' tampi-button--disabled';

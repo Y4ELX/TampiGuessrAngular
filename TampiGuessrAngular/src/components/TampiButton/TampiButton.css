@@ -1,4 +1,4 @@
-/* TampiButton Component Styles */
+/* TampiButton Component Styles - Solo tamaño Large */
 .tampi-button {
   position: relative;
   display: inline-flex;
@@ -15,10 +15,13 @@
   transition: all 0.3s ease;
   overflow: hidden;
   outline: none;
-  text-decoration: none;
   user-select: none;
-  -webkit-user-select: none;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  /* Propiedades del tamaño Large */
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  min-height: 3rem;
 }
 
 .tampi-button:focus {
@@ -65,8 +68,7 @@
 }
 
 .tampi-button__icon {
-  font-size: 1.2em;
-  line-height: 1;
+  font-size: 1.75rem; /* Tamaño del icono para Large */
 }
 
 .tampi-button__text {
@@ -92,25 +94,6 @@
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-/* SIZES */
-.tampi-button--small {
-  padding: 0.5rem 1.5rem;
-  font-size: 0.875rem;
-  min-height: 2rem;
-}
-
-.tampi-button--medium {
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  min-height: 2.5rem;
-}
-
-.tampi-button--large {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-  min-height: 3rem;
 }
 
 /* COLORS */
@@ -194,90 +177,25 @@
   width: 100%;
 }
 
-/* Soporte para botones circulares */
+/* Botones circulares - Tamaño Large */
 .tampi-button.circular {
   border-radius: 50% !important;
   padding: 0 !important;
-  width: 60px;
-  height: 60px;
-  min-width: 60px !important;
+  width: 150px;
+  height: 150px;
+  min-width: 100px !important;
   gap: 0 !important;
 }
 
-.tampi-button.circular {
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
-  box-shadow: none !important;
-}
-
-.tampi-button.circular:hover {
-  filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3));
-}
-
-/* Drop-shadows específicas por color para botones circulares */
-.tampi-button.circular.tampi-button--primary:hover {
-  filter: drop-shadow(0 8px 25px rgba(255, 107, 107, 0.5));
-}
-
-.tampi-button.circular.tampi-button--secondary:hover {
-  filter: drop-shadow(0 8px 25px rgba(78, 205, 196, 0.5));
-}
-
-.tampi-button.circular.tampi-button--warning:hover {
-  filter: drop-shadow(0 8px 25px rgba(255, 212, 59, 0.5));
-}
-
-.tampi-button.circular.tampi-button--info:hover {
-  filter: drop-shadow(0 8px 25px rgba(51, 154, 240, 0.5));
-}
-
-.tampi-button.circular.tampi-button--success:hover {
-  filter: drop-shadow(0 8px 25px rgba(81, 207, 102, 0.5));
-}
-
-.tampi-button.circular.tampi-button--danger:hover {
-  filter: drop-shadow(0 8px 25px rgba(255, 107, 107, 0.5));
-}
-
 .tampi-button.circular .tampi-button__icon {
-  font-size: 1.5rem;
+  font-size: 1.75rem; /* Tamaño del icono para Large circular */
 }
 
 .tampi-button.circular .tampi-button__text {
   display: none;
 }
 
-/* Tamaños para botones circulares */
-.tampi-button.circular.tampi-button--small {
-  width: 40px;
-  height: 40px;
-  min-width: 40px !important;
-}
-
-.tampi-button.circular.tampi-button--small .tampi-button__icon {
-  font-size: 1rem;
-}
-
-.tampi-button.circular.tampi-button--medium {
-  width: 50px;
-  height: 50px;
-  min-width: 50px !important;
-}
-
-.tampi-button.circular.tampi-button--medium .tampi-button__icon {
-  font-size: 1.25rem;
-}
-
-.tampi-button.circular.tampi-button--large {
-  width: 100px;
-  height: 100px;
-  min-width: 100px !important;
-}
-
-.tampi-button.circular.tampi-button--large .tampi-button__icon {
-  font-size: 1.75rem;
-}
-
-/* Estilos específicos para iconos SVG */
+/* SVG icons - Tamaño Large */
 .tampi-button svg {
   display: inline-block !important;
   vertical-align: middle;
@@ -289,47 +207,31 @@
 }
 
 .tampi-button.circular svg {
-  width: 2em !important;
+  width: 2em !important; /* Tamaño SVG para Large circular */
   height: 2em !important;
 }
 
-.tampi-button.circular.tampi-button--small svg {
-  width: 1em !important;
-  height: 1em !important;
-}
-
-.tampi-button.circular.tampi-button--medium svg {
-  width: 1.25em !important;
-  height: 1.25em !important;
-}
-
-.tampi-button.circular.tampi-button--large svg {
-  width: 2.5em !important;
-  height: 2.5em !important;
-}
-
-/* Responsive adjustments */
+/* Responsive - Mantener proporciones Large */
 @media (max-width: 768px) {
-  .tampi-button--large {
+  .tampi-button {
     padding: 0.875rem 2rem;
     font-size: 1rem;
     min-height: 2.75rem;
   }
   
-  .tampi-button--medium {
-    padding: 0.625rem 1.5rem;
-    font-size: 0.9rem;
-    min-height: 2.25rem;
+  .tampi-button.circular {
+    width: 80px;
+    height: 80px;
+    min-width: 80px !important;
   }
   
-  .tampi-button--small {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.8rem;
-    min-height: 2rem;
+  .tampi-button.circular svg {
+    width: 1.8em !important;
+    height: 1.8em !important;
   }
 }
 
-/* Accessibility improvements */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .tampi-button,
   .tampi-button::before,
@@ -337,12 +239,5 @@
   .tampi-button__spinner {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .tampi-button {
-    border: 2px solid currentColor;
   }
 }
