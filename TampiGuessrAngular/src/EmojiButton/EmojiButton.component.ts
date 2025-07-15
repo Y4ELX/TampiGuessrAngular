@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-emoji-button',
@@ -7,14 +8,23 @@ import { Component, Input } from '@angular/core';
 })
 export class EmojiButtonComponent {
   @Input() emoji: string = '😀';
+  @Input() svgIcon: string = ''; // Nueva propiedad para SVG
   @Input() link: string = '';
   @Input() color: string = '#ff6b6b';
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   onButtonClick() {
     if (this.link) {
       window.open(this.link, '_blank');
     }
+  }
+
+  get safeHtml(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.svgIcon);
+  }
+
+  get hasIcon(): boolean {
+    return this.svgIcon.length > 0;
   }
 }

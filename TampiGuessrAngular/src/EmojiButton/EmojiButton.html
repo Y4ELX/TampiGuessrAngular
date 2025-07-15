@@ -3,5 +3,9 @@
   [style.--button-color]="color"
   (click)="onButtonClick()"
   type="button">
-  {{ emoji }}
+  
+  <!-- Mostrar SVG si existe, sino mostrar emoji -->
+  <span *ngIf="hasIcon" [innerHTML]="safeHtml"></span>
+  <span *ngIf="!hasIcon">{{ emoji }}</span>
+  
 </button>

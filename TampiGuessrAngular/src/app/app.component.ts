@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { trophyIcon } from '../components/Icons/svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TampiGuessrAngular';
+
+  // Iconos SVG
+  trophyIconHtml = trophyIcon(30, 30, 'trophy-icon');
 
   constructor() {
     // Constructor simplificado
