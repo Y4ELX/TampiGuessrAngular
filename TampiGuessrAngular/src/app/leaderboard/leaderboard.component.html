@@ -1,19 +1,100 @@
-<h2>Leaderboard</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Puntaje</th>
-      <th>Tiempo (s)</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let entry of scores">
-      <td>{{entry.name}}</td>
-      <td>{{entry.score}}</td>
-      <td>{{entry.time}}</td>
-      <td>{{entry.date | date:'short'}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="leaderboard-container">
+  <div class="leaderboard-header">
+    <h2>🏆 Leaderboard TampiGuessr</h2>
+    <p>Los mejores jugadores de Tampico</p>
+  </div>
+  
+  <div class="leaderboard-content">
+    <div class="leaderboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon">🎮</div>
+        <div class="stat-info">
+          <span class="stat-value">{{scores.length}}</span>
+          <span class="stat-label">Partidas Jugadas</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-info">
+          <span class="stat-value">{{getTopScore()}}</span>
+          <span class="stat-label">Puntuación Máxima</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-info">
+          <span class="stat-value">{{getBestTime()}}s</span>
+          <span class="stat-label">Mejor Tiempo</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="leaderboard-table" *ngIf="scores.length > 0; else noScores">
+      <div class="table-header">
+        <div class="rank-col">Pos</div>
+        <div class="name-col">Jugador</div>
+        <div class="score-col">Puntos</div>
+        <div class="time-col">Tiempo</div>
+        <div class="date-col">Fecha</div>
+      </div>
+      
+      <div class="table-body">
+        <div 
+          class="table-row" 
+          *ngFor="let entry of scores; let i = index"
+          [class.top-1]="i === 0"
+          [class.top-2]="i === 1"
+          [class.top-3]="i === 2"
+        >
+          <div class="rank-col">
+            <span class="rank-number">{{i + 1}}</span>
+            <span class="rank-medal" *ngIf="i < 3">
+              {{getRankMedal(i)}}
+            </span>
+          </div>
+          <div class="name-col">
+            <div class="player-info">
+              <span class="player-name">{{entry.name}}</span>
+              <span class="player-badge" *ngIf="i < 3">{{getRankTitle(i)}}</span>
+            </div>
+          </div>
+          <div class="score-col">
+            <span class="score-value">{{entry.score}}</span>
+            <span class="score-label">pts</span>
+          </div>
+          <div class="time-col">
+            <span class="time-value">{{entry.time}}</span>
+            <span class="time-label">seg</span>
+          </div>
+          <div class="date-col">
+            <span class="date-value">{{entry.date | date:'dd/MM/yyyy'}}</span>
+            <span class="time-value">{{entry.date | date:'HH:mm'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noScores>
+      <div class="no-scores">
+        <div class="no-scores-icon">🎯</div>
+        <h3>¡No hay puntuaciones aún!</h3>
+        <p>Sé el primero en jugar TampiGuessr y aparecer en el leaderboard</p>
+        <button class="play-now-btn" (click)="goToGame()">
+          Jugar Ahora
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  
+  <div class="leaderboard-actions">
+    <button class="action-btn home-btn" (click)="goToHome()">
+      🏠 Inicio
+    </button>
+    <button class="action-btn refresh-btn" (click)="refreshLeaderboard()">
+      🔄 Actualizar
+    </button>
+    <button class="action-btn play-btn" (click)="goToGame()">
+      🎮 Jugar
+    </button>
+  </div>
+</div>

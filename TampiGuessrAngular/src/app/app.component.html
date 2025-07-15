@@ -1,13 +1,14 @@
-<div class="main-container">
+<!-- Página principal (se muestra solo en la ruta raíz) -->
+<div class="main-container" *ngIf="isHomePage()">
   <div class="hero-section">
     <div class="background-overlay"></div>
     
     <!-- Botón de configuración en la esquina superior derecha -->
     <div class="settings-button">
       <app-emoji-button 
-        emoji="" 
+        emoji="⚙️" 
         color="#00FFFF" 
-        link="https://google.com">
+        (click)="showSettings()">
       </app-emoji-button>
     </div>
     
@@ -23,7 +24,7 @@
     <div class="content-wrapper">
       <!-- Logo centrado -->
       <div class="logo-section">
-        <img src="../assets/tampiguessr.svg" style="height: 200px;" alt="">
+        <img src="../assets/tampiguessr.svg" style="height: 200px;" alt="TampiGuessr Logo">
       </div>
       
       <!-- Botón de play redondo centrado -->
@@ -38,6 +39,18 @@
           </svg>
         </app-tampi-button>
       </div>
+      
+      <!-- Botón de tutorial -->
+      <div class="tutorial-section">
+        <app-tampi-button 
+          text="📚 ¿Cómo jugar?"
+          color="secondary"
+          (onClick)="showTutorial()">
+        </app-tampi-button>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Router outlet para mostrar diferentes componentes -->
+<router-outlet></router-outlet>

@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { GameComponent } from './game/game.component';
 import { LeaderboardService } from './leaderboard/leaderboard.service';
 
+// Firebase imports
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +27,10 @@ import { LeaderboardService } from './leaderboard/leaderboard.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [LeaderboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
