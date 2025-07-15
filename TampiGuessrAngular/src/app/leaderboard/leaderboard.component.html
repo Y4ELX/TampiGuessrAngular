@@ -1,0 +1,19 @@
+<h2>Leaderboard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Puntaje</th>
+      <th>Tiempo (s)</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of scores">
+      <td>{{entry.name}}</td>
+      <td>{{entry.score}}</td>
+      <td>{{entry.time}}</td>
+      <td>{{entry.date | date:'short'}}</td>
+    </tr>
+  </tbody>
+</table>

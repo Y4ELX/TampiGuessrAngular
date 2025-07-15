@@ -1,0 +1,18 @@
+.game-sim {
+  max-width: 400px;
+  margin: 3rem auto;
+  background: #fff2;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+label {
+  display: block;
+  margin-bottom: 1rem;
+}
+input {
+  width: 100%;
+  padding: 0.5rem;
+}
+button {
+  margin-top: 1rem;
+}

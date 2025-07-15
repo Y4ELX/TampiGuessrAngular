@@ -35,8 +35,8 @@ export class AppComponent {
   }
 
   // Función para mostrar la tabla de puntuaciones
-  showLeaderboard() {
-    console.log('Mostrando tabla de puntuaciones...');
-    alert('🏆 TABLA DE PUNTUACIONES\n\n🥇 TOP JUGADORES:\n1. GeoMaster_Pro - 🌟 25,480 pts\n2. WorldExplorer - 🌟 23,890 pts\n3. MapWizard2024 - 🌟 21,750 pts\n4. StreetViewKing - 🌟 19,650 pts\n5. GlobalGuesser - 🌟 18,320 pts\n\n📊 ESTADÍSTICAS:\n• Precisión promedio: 87%\n• Países visitados: 195\n• Tiempo total jugado: 2.5h\n\n🔒 Inicia sesión para guardar tu progreso y competir con otros jugadores.');
-  }
+  // showLeaderboard() {
+  //   console.log('Mostrando tabla de puntuaciones...');
+  //   alert('🏆 TABLA DE PUNTUACIONES\n\n🥇 TOP JUGADORES:\n1. GeoMaster_Pro - 🌟 25,480 pts\n2. WorldExplorer - 🌟 23,890 pts\n3. MapWizard2024 - 🌟 21,750 pts\n4. StreetViewKing - 🌟 19,650 pts\n5. GlobalGuesser - 🌟 18,320 pts\n\n📊 ESTADÍSTICAS:\n• Precisión promedio: 87%\n• Países visitados: 195\n• Tiempo total jugado: 2.5h\n\n🔒 Inicia sesión para guardar tu progreso y competir con otros jugadores.');
+  // }
 }

@@ -1,0 +1,18 @@
+<div class="game-sim">
+  <h2>Simulación de partida</h2>
+  <form (ngSubmit)="submitScore()">
+    <label>
+      Nombre:
+      <input type="text" [(ngModel)]="name" name="name" required>
+    </label>
+    <label>
+      Puntaje:
+      <input type="number" [(ngModel)]="score" name="score" required>
+    </label>
+    <label>
+      Tiempo de partida (segundos):
+      <input type="number" [(ngModel)]="time" name="time" required>
+    </label>
+    <button type="submit">Siguiente</button>
+  </form>
+</div>
