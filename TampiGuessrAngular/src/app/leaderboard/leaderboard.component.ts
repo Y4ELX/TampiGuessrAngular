@@ -20,7 +20,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   loadScores() {
-    this.leaderboard.getTopScores().subscribe(scores => {
+    this.leaderboard.getTopScores().subscribe((scores: any[]) => {
       this.scores = scores;
     });
   }
@@ -32,7 +32,25 @@ export class LeaderboardComponent implements OnInit {
 
   getBestTime(): number {
     if (this.scores.length === 0) return 0;
-    return Math.min(...this.scores.map(s => s.time));
+    const times = this.scores.map(s => s.time || 60).filter(t => t > 0);
+    return times.length > 0 ? Math.min(...times) : 60;
+  }
+
+  getBestDistance(): string {
+    if (this.scores.length === 0) return '0 m';
+    const distances = this.scores
+      .filter(s => s.distance)
+      .map(s => s.distance);
+    if (distances.length === 0) return '0 m';
+    
+    // Encontrar la distancia más pequeña (mejor precisión)
+    const bestDistance = distances.reduce((best, current) => {
+      const bestNum = parseFloat(best.replace(/[^\d.]/g, ''));
+      const currentNum = parseFloat(current.replace(/[^\d.]/g, ''));
+      return currentNum < bestNum ? current : best;
+    });
+    
+    return bestDistance;
   }
 
   getRankMedal(position: number): string {
@@ -54,6 +72,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   refreshLeaderboard() {
+    console.log('Actualizando leaderboard...');
     this.loadScores();
   }
 }

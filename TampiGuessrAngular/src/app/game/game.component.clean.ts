@@ -42,14 +42,6 @@ export class GameComponent implements OnInit, OnDestroy {
 
   initializeGame() {
     console.log("Iniciando juego...");
-    // Verificar si Google Maps está disponible
-    if (typeof google === 'undefined') {
-      console.error("Google Maps no está disponible");
-      // Mostrar mensaje de error al usuario
-      alert("Error: Google Maps no pudo cargar. Verifica tu conexión a internet y la API Key.");
-      return;
-    }
-    
     setTimeout(() => {
       if (this.streetViewElement && this.mapElement) {
         this.initMap();
@@ -64,31 +56,26 @@ export class GameComponent implements OnInit, OnDestroy {
     console.log("Inicializando mapa...");
     if (!this.mapElement) return;
 
-    try {
-      const mapOptions = {
-        center: { lat: 22.28552, lng: -97.86614 },
-        zoom: 12,
-        zoomControl: true,
-        disableDefaultUI: true,
-        draggableCursor: 'crosshair'
-      };
+    const mapOptions = {
+      center: { lat: 22.28552, lng: -97.86614 },
+      zoom: 12,
+      zoomControl: true,
+      disableDefaultUI: true,
+      draggableCursor: 'crosshair'
+    };
 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.streetViewService = new google.maps.StreetViewService();
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.streetViewService = new google.maps.StreetViewService();
 
-      this.map.addListener('click', (event: any) => {
-        if (this.markers.length >= 1) {
-          this.markers[0].setMap(null);
-          this.markers.shift();
-        }
-        this.placeMarker(event.latLng);
-      });
+    this.map.addListener('click', (event: any) => {
+      if (this.markers.length >= 1) {
+        this.markers[0].setMap(null);
+        this.markers.shift();
+      }
+      this.placeMarker(event.latLng);
+    });
 
-      this.initializeStreetView();
-    } catch (error) {
-      console.error("Error al inicializar Google Maps:", error);
-      alert("Error al cargar Google Maps. Posibles causas:\n1. API Key inválida o con cuota excedida\n2. Problemas de conexión\n3. Restricciones de dominio");
-    }
+    this.initializeStreetView();
   }
 
   initializeStreetView() {

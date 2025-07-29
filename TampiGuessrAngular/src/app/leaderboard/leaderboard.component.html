@@ -21,10 +21,10 @@
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">⚡</div>
+        <div class="stat-icon">📍</div>
         <div class="stat-info">
-          <span class="stat-value">{{getBestTime()}}s</span>
-          <span class="stat-label">Mejor Tiempo</span>
+          <span class="stat-value">{{getBestDistance()}}</span>
+          <span class="stat-label">Mejor Precisión</span>
         </div>
       </div>
     </div>
@@ -63,12 +63,12 @@
             <span class="score-label">pts</span>
           </div>
           <div class="time-col">
-            <span class="time-value">{{entry.time}}</span>
-            <span class="time-label">seg</span>
+            <span class="time-value">{{entry.distance || entry.time + 's'}}</span>
+            <span class="time-label" *ngIf="!entry.distance">seg</span>
           </div>
           <div class="date-col">
-            <span class="date-value">{{entry.date | date:'dd/MM/yyyy'}}</span>
-            <span class="time-value">{{entry.date | date:'HH:mm'}}</span>
+            <span class="date-value">{{entry.date | date:'dd/MM/yyyy':'en-US'}}</span>
+            <span class="time-value">{{entry.date | date:'HH:mm':'en-US'}}</span>
           </div>
         </div>
       </div>

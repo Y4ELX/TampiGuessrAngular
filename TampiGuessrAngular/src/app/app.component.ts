@@ -39,4 +39,10 @@ export class AppComponent {
     console.log('Mostrando configuración...');
     alert('⚙️ CONFIGURACIÓN\n\n🔧 Próximas opciones disponibles:\n• Dificultad del juego (Fácil, Medio, Difícil)\n• Tiempo límite por ronda\n• Ubicaciones específicas de Tampico\n• Modo de juego (Clásico, Sin tiempo, Explorador)\n• Configuración de sonido y música\n• Idioma de la interfaz\n• Modo oscuro/claro\n\n🎮 Estas funciones estarán disponibles en la próxima versión.');
   }
+
+  // Función para ir al leaderboard
+  goToLeaderboard() {
+    console.log('Ir al leaderboard...');
+    this.router.navigate(['/leaderboard']);
+  }
 }

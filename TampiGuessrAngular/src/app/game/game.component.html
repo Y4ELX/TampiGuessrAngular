@@ -1,158 +1,67 @@
+<!-- Game Container -->
 <div class="game-container">
   
-  <!-- Pantalla de configuración inicial -->
-  <div class="setup-screen" *ngIf="gameState === 'setup'">
-    <div class="setup-content">
-      <h2>🎮 TampiGuessr</h2>
-      <p>¡Adivina las ubicaciones de Tampico!</p>
+  <!-- Header -->
+  <div class="header">
+    <div class="game-info">
+      <div class="score-info">
+        <span class="score-text">Puntos: {{puntosTotales}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Content -->
+  <div class="game-content" *ngIf="!showFinalScore">
+    
+    <!-- Street View Container -->
+    <div class="street-view-container">
+      <div #streetView class="street-view"></div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-container">
+      <div #map class="map"></div>
+      
+      <!-- Control Buttons -->
+      <div class="control-buttons">
+        <button 
+          class="guess-btn" 
+          (click)="makeGuess()"
+          [disabled]="!marker">
+          Adivinar
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Final Score Panel -->
+  <div class="final-score-panel" *ngIf="showFinalScore">
+    <div class="final-score-content">
+      <h2>¡Juego Terminado!</h2>
+      <div class="final-details">
+        <p><strong>Distancia:</strong> {{finalDistance}}</p>
+        <p><strong>Puntos obtenidos:</strong> {{puntosTotales}}</p>
+      </div>
+      
       <div class="name-input">
-        <label for="playerName">Ingresa tu nombre:</label>
         <input 
-          id="playerName"
           type="text" 
           [(ngModel)]="playerName" 
-          placeholder="Tu nombre"
-          maxlength="20"
-        >
-      </div>
-      <button class="start-btn" (click)="startGame()">Comenzar Juego</button>
-    </div>
-  </div>
-
-  <!-- Pantalla de juego -->
-  <div class="game-screen" *ngIf="gameState === 'playing' || gameState === 'guessing'">
-    <div class="game-header">
-      <div class="game-info">
-        <span>Ronda {{currentRound}} de {{totalRounds}}</span>
-        <span>Puntuación: {{totalScore}}</span>
-        <span>Jugador: {{playerName}}</span>
-      </div>
-    </div>
-    
-    <div class="game-content">
-      <div class="image-section">
-        <h3>¿Dónde está esta ubicación en Tampico?</h3>
-        <div class="location-image" *ngIf="currentLocation">
-          <img [src]="currentLocation.image" [alt]="currentLocation.name">
-          <p class="location-hint">{{currentLocation.description}}</p>
-        </div>
-      </div>
-      
-      <div class="map-section">
-        <h4>Haz clic en el mapa donde crees que está:</h4>
-        <div class="simplified-map">
-          <div class="map-container">
-            <img src="https://via.placeholder.com/400x300?text=Mapa+de+Tampico" alt="Mapa de Tampico">
-            <div class="map-overlay">
-              <!-- Botones simulados para ubicaciones -->
-              <button 
-                class="map-point laguna" 
-                (click)="simulateMapClick('Laguna del Carpintero')"
-                [class.selected]="selectedLocation"
-              >
-                <span class="tooltip">Laguna del Carpintero</span>
-              </button>
-              <button 
-                class="map-point plaza" 
-                (click)="simulateMapClick('Plaza de Armas')"
-                [class.selected]="selectedLocation"
-              >
-                <span class="tooltip">Plaza de Armas</span>
-              </button>
-              <button 
-                class="map-point catedral" 
-                (click)="simulateMapClick('Catedral de Tampico')"
-                [class.selected]="selectedLocation"
-              >
-                <span class="tooltip">Catedral</span>
-              </button>
-              <button 
-                class="map-point mercado" 
-                (click)="simulateMapClick('Mercado de Tampico')"
-                [class.selected]="selectedLocation"
-              >
-                <span class="tooltip">Mercado</span>
-              </button>
-              <button 
-                class="map-point malecon" 
-                (click)="simulateMapClick('Malecón de Tampico')"
-                [class.selected]="selectedLocation"
-              >
-                <span class="tooltip">Malecón</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="game-controls">
-          <button 
-            class="submit-guess-btn" 
-            (click)="submitGuess()" 
-            [disabled]="!selectedLocation"
-          >
-            Confirmar Ubicación
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pantalla de resultado de ronda -->
-  <div class="result-screen" *ngIf="gameState === 'results'">
-    <div class="result-content">
-      <h3>¡Resultado de la Ronda {{currentRound - 1}}!</h3>
-      <div class="result-info">
-        <p><strong>Ubicación:</strong> {{currentLocation?.name}}</p>
-        <p><strong>Puntos obtenidos:</strong> {{roundScores[currentRound - 2]}}</p>
-        <p><strong>Puntuación total:</strong> {{totalScore}}</p>
-      </div>
-      <div class="next-round-info">
-        <p>Preparando siguiente ronda...</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pantalla de juego terminado -->
-  <div class="finished-screen" *ngIf="gameState === 'finished'">
-    <div class="finished-content">
-      <h2>🎉 ¡Juego Terminado!</h2>
-      <div class="final-stats">
-        <div class="stat">
-          <label>Jugador:</label>
-          <span>{{playerName}}</span>
-        </div>
-        <div class="stat">
-          <label>Puntuación Final:</label>
-          <span class="final-score">{{totalScore}}</span>
-        </div>
-        <div class="stat">
-          <label>Tiempo Total:</label>
-          <span>{{time}} segundos</span>
-        </div>
-      </div>
-      
-      <div class="round-breakdown">
-        <h4>Desglose por Ronda:</h4>
-        <div class="round-scores">
-          <div class="round-score" *ngFor="let score of roundScores; let i = index">
-            <span>Ronda {{i + 1}}:</span>
-            <span>{{score}} puntos</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="game-actions">
-        <button class="action-btn save-btn" (click)="submitScore()">
+          placeholder="Ingresa tu nombre"
+          class="name-field">
+        <button 
+          class="save-btn" 
+          (click)="saveScore()"
+          [disabled]="!playerName || playerName.trim() === ''">
           Guardar Puntuación
         </button>
-        <button class="action-btn leaderboard-btn" (click)="goToLeaderboard()">
-          Ver Leaderboard
-        </button>
-        <button class="action-btn play-again-btn" (click)="playAgain()">
-          Jugar de Nuevo
-        </button>
       </div>
+      
+      <button class="play-again-btn" (click)="playAgain()">
+        Jugar de Nuevo
+      </button>
     </div>
   </div>
-  
+
 </div>
