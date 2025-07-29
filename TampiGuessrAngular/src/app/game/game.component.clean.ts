@@ -42,8 +42,17 @@ export class GameComponent implements OnInit, OnDestroy {
 
   initializeGame() {
     console.log("Iniciando juego...");
+    
+    // Check if Google Maps API is loaded
+    if (typeof google === 'undefined' || !google.maps) {
+      console.log("Google Maps API no está cargada, esperando...");
+      setTimeout(() => this.initializeGame(), 500);
+      return;
+    }
+    
     setTimeout(() => {
       if (this.streetViewElement && this.mapElement) {
+        console.log("Elementos del DOM encontrados, inicializando mapa...");
         this.initMap();
       } else {
         console.error("Elementos del DOM no encontrados, intentando de nuevo...");
@@ -54,28 +63,37 @@ export class GameComponent implements OnInit, OnDestroy {
 
   initMap() {
     console.log("Inicializando mapa...");
-    if (!this.mapElement) return;
+    if (!this.mapElement) {
+      console.error("Elemento del mapa no encontrado");
+      return;
+    }
 
-    const mapOptions = {
-      center: { lat: 22.28552, lng: -97.86614 },
-      zoom: 12,
-      zoomControl: true,
-      disableDefaultUI: true,
-      draggableCursor: 'crosshair'
-    };
+    try {
+      const mapOptions = {
+        center: { lat: 22.28552, lng: -97.86614 },
+        zoom: 12,
+        zoomControl: true,
+        disableDefaultUI: true,
+        draggableCursor: 'crosshair'
+      };
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.streetViewService = new google.maps.StreetViewService();
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.streetViewService = new google.maps.StreetViewService();
+      
+      console.log("Mapa inicializado correctamente");
 
-    this.map.addListener('click', (event: any) => {
-      if (this.markers.length >= 1) {
-        this.markers[0].setMap(null);
-        this.markers.shift();
-      }
-      this.placeMarker(event.latLng);
-    });
+      this.map.addListener('click', (event: any) => {
+        if (this.markers.length >= 1) {
+          this.markers[0].setMap(null);
+          this.markers.shift();
+        }
+        this.placeMarker(event.latLng);
+      });
 
-    this.initializeStreetView();
+      this.initializeStreetView();
+    } catch (error) {
+      console.error("Error al inicializar el mapa:", error);
+    }
   }
 
   initializeStreetView() {
@@ -99,6 +117,9 @@ export class GameComponent implements OnInit, OnDestroy {
             this.plat = coordinates.lat;
             this.plng = coordinates.lng;
             console.log("Ubicación generada:", coordinates);
+            console.log("Street View inicializado correctamente");
+          } else {
+            console.error("Elemento Street View no encontrado");
           }
         } else {
           attempts++;
