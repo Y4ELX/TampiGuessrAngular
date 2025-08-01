@@ -1,0 +1,193 @@
+<div class="container-principal">
+<div class="formulario-section">
+    <form [formGroup]="trabajadorForm" (ngSubmit)="agregarTrabajador()" class="trabajador-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            formControlName="nombre"
+            placeholder="Nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input 
+            type="text" 
+            id="apellidos" 
+            formControlName="apellidos"
+            placeholder="Apellidos">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="puesto">Puesto</label>
+          <input 
+            type="text" 
+            id="puesto" 
+            formControlName="puesto"
+            placeholder="Puesto">
+        </div>
+
+        <div class="form-group">
+          <label for="fechaIngreso">Fecha de Ingreso</label>
+          <input 
+            type="date" 
+            id="fechaIngreso" 
+            formControlName="fechaIngreso">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input 
+            type="number" 
+            id="edad" 
+            formControlName="edad"
+            placeholder="Edad"
+            min="18" 
+            max="99">
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            formControlName="telefono"
+            placeholder="8334427876"
+            maxlength="10">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            placeholder="yomero@gmail.com">
+        </div>
+
+        <div class="form-group">
+          <label for="nss">NSS</label>
+          <input 
+            type="text" 
+            id="nss" 
+            formControlName="nss"
+            placeholder="12345678901"
+            maxlength="11">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-agregar">
+            Agregar Trabajador
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="tabla-section">
+    <div class="tabla-header">
+      <h3>Lista de Trabajadores</h3>
+      <button 
+        type="button" 
+        class="btn-limpiar-todos" 
+        (click)="limpiarTrabajadores()"
+      >
+        Limpiar Todos
+      </button>
+    </div>
+
+    <div class="tabla-container">
+      <table class="trabajadores-table">
+        <thead>
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Puesto</th>
+            <th>Fecha Ingreso</th>
+            <th>Edad</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trabajador of trabajadores; let i = index">
+            <td class="nombre-completo">{{ trabajador.nombreCompleto }}</td>
+            <td>{{ trabajador.puesto }}</td>
+            <td>{{ trabajador.fechaIngresoFormateada }}</td>
+            <td>{{ trabajador.edad }} años</td>
+            <td>{{ trabajador.telefono }}</td>
+            <td>{{ trabajador.email }}</td>
+            <td class="acciones">
+              <button 
+                type="button" 
+                class="btn-imprimir"
+                (click)="imprimirGafete(trabajador)"
+                [disabled]="cargando"
+                title="Imprimir Gafete">
+                Imprimir
+              </button>
+              <button 
+                type="button" 
+                class="btn-eliminar"
+                (click)="eliminarTrabajador(i)"
+                [disabled]="cargando"
+                title="Eliminar Trabajador">
+                Borrar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noTrabajadores>
+      <div class="no-trabajadores" *ngIf="!cargando">
+        <p>No hay trabajadores registrados</p>
+        <p>Agregue el primer trabajador usando el formulario anterior</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <div id="gafete-print" class="gafete-print" [class.visible]="gafeteVisible" *ngIf="trabajadorParaGafete">
+    <div class="gafete">
+      <div class="row1">
+        <img src="assets/unelogo.png" class="unelogo">
+      </div>
+
+    <div class="row2">
+    <div class="foto-placeholder">
+        <img src="assets/catppf.png" class="foto-unelogo">
+    </div>
+    </div>
+
+      <div class="row3">
+        <p class="nombre">{{ trabajadorParaGafete.nombreCompleto }}</p>
+        <p class="puesto">{{ trabajadorParaGafete.puesto }}</p>
+      </div>
+
+      <div class="bottom"></div>
+    </div>
+
+    <div class="gafete">
+      <div class="row1"></div>
+
+      <div class="row5">
+        <p><strong>Fecha Ingreso:</strong><br>{{ trabajadorParaGafete.fechaIngresoFormateada }}</p>
+        <p><strong>Edad:</strong><br>{{ trabajadorParaGafete.edad }} años</p>
+        <p><strong>Teléfono:</strong><br>{{ trabajadorParaGafete.telefono }}</p>
+        <p><strong>Email:</strong><br>{{ trabajadorParaGafete.email }}</p>
+        <p><strong>NSS:</strong><br>{{ trabajadorParaGafete.nss }}</p>
+      </div>
+
+      <div class="bottom"></div>
+    </div>
+  </div>
+</div>
