@@ -92,7 +92,7 @@
 
 .table-body {
   max-height: 500px;
-  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .table-row {
@@ -127,11 +127,15 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  text-align: center;
+  justify-content: center;
+  margin-right: 20px;
 }
 
 .rank-number {
   font-weight: bold;
   font-size: 1.2em;
+  color: #333;
 }
 
 .rank-medal {
@@ -188,6 +192,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .time-value {

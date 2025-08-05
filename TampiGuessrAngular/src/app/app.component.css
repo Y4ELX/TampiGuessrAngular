@@ -426,7 +426,6 @@ app-tampi-button:hover .play-icon {
 }
 
 .play-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   border-radius: 50%;
   width: 100px;
@@ -488,7 +487,7 @@ app-tampi-button:hover .play-icon {
 
 /* Estilo para el botón de play */
 .play-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #eb4343;
   border: none;
   border-radius: 50%;
   width: 120px;

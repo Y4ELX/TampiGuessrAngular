@@ -34,7 +34,7 @@
         <div class="rank-col">Pos</div>
         <div class="name-col">Jugador</div>
         <div class="score-col">Puntos</div>
-        <div class="time-col">Tiempo</div>
+        <div class="time-col">Distancia Promedio</div>
         <div class="date-col">Fecha</div>
       </div>
       
@@ -46,12 +46,12 @@
           [class.top-2]="i === 1"
           [class.top-3]="i === 2"
         >
-          <div class="rank-col">
-            <span class="rank-number">{{i + 1}}</span>
+            <div class="rank-col">
             <span class="rank-medal" *ngIf="i < 3">
               {{getRankMedal(i)}}
             </span>
-          </div>
+            <span class="rank-number" *ngIf="i >= 3">{{i + 1}}</span>
+            </div>
           <div class="name-col">
             <div class="player-info">
               <span class="player-name">{{entry.name}}</span>
@@ -67,8 +67,7 @@
             <span class="time-label" *ngIf="!entry.distance">seg</span>
           </div>
           <div class="date-col">
-            <span class="date-value">{{entry.date | date:'dd/MM/yyyy':'en-US'}}</span>
-            <span class="time-value">{{entry.date | date:'HH:mm':'en-US'}}</span>
+            <span class="date-value">{{entry.date | date:'dd MMM yyyy':'es'}}</span>
           </div>
         </div>
       </div>
@@ -89,9 +88,6 @@
   <div class="leaderboard-actions">
     <button class="action-btn home-btn" (click)="goToHome()">
       🏠 Inicio
-    </button>
-    <button class="action-btn refresh-btn" (click)="refreshLeaderboard()">
-      🔄 Actualizar
     </button>
     <button class="action-btn play-btn" (click)="goToGame()">
       🎮 Jugar
