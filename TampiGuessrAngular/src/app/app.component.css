@@ -323,14 +323,6 @@ app-tampi-button:hover .play-icon {
   max-height: 40px;
 }
 
-/* Responsive para iconos */
-@media (max-width: 768px) {
-  .play-icon {
-    width: 24px !important;
-    height: 24px !important;
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .game-title {
@@ -508,4 +500,196 @@ app-tampi-button:hover .play-icon {
 
 .play-icon {
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Minimal Settings Modal */
+.settings-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.settings-modal {
+  background: #242424;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.modal-header {
+  padding: 24px 28px;
+  background: #eb4343;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.modal-content {
+  padding: 28px;
+  color: #fff;
+}
+
+.game-mode-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #eb4343;
+  font-weight: 600;
+}
+
+.mode-option {
+  background: #333;
+  border: 1.5px solid #444;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mode-option:hover {
+  background: #3a3a3a;
+  border-color: #eb4343;
+}
+
+.mode-option.selected {
+  background: rgba(235, 67, 67, 0.1);
+  border-color: #eb4343;
+}
+
+.mode-info {
+  flex: 1;
+}
+
+.mode-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.mode-description {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.mode-radio input {
+  width: 18px;
+  height: 18px;
+  accent-color: #eb4343;
+}
+
+.custom-config {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 10px;
+}
+
+.warning-message {
+  color: #ffc107;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.rounds-config {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rounds-config label {
+  font-weight: 500;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.rounds-input {
+  width: 70px;
+  padding: 8px 10px;
+  border: 1.5px solid #eb4343;
+  border-radius: 6px;
+  background: #333;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.rounds-input:focus {
+  outline: none;
+  border-color: #c92d2d;
+  background: #3a3a3a;
+}
+
+.modal-footer {
+  padding: 20px 28px;
+  background: #1f1f1f;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.apply-btn {
+  background: #eb4343;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(235, 67, 67, 0.2);
+}
+
+.apply-btn:hover {
+  background: #c92d2d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(235, 67, 67, 0.3);
 }

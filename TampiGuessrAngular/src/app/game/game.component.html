@@ -4,8 +4,9 @@
   <!-- Header -->
   <div class="header">
     <div class="game-info">
+      <img src="assets/crocoGuessr.svg" (click)="goToHome()" style="height: 30px;" alt="Tampi Logo">
       <div class="score-info">
-        <span class="score-text">Puntos: {{puntosTotales}}</span>
+        <span class="score-text">Puntos: {{puntosTotales}} </span>
         <span class="round-text">Ronda: {{rondaActual}} / {{maxRondas}}</span>
       </div>
     </div>
@@ -28,21 +29,44 @@
         <button 
           class="guess-btn" 
           (click)="makeGuess()"
-          [disabled]="!marker">
+          [disabled]="!marker"
+          *ngIf="!showRoundResult">
           Adivinar
         </button>
+        
+        <button 
+          class="next-round-btn" 
+          (click)="siguienteRonda()"
+          *ngIf="showRoundResult && rondaActual < maxRondas">
+          Siguiente
+        </button>
+        
+        <button 
+          class="finish-game-btn" 
+          (click)="finalizarJuego()"
+          *ngIf="showRoundResult && rondaActual >= maxRondas">
+          Ver Resultado Final
+        </button>
+      </div>
+      
+      <!-- Resultado simple -->
+      <div class="round-result-simple" *ngIf="showRoundResult">
+        <p><strong>Distancia:</strong> {{currentRoundDistance}}</p>
+        <p><strong>+{{currentRoundPoints}} puntos</strong></p>
       </div>
     </div>
 
   </div>
 
-  <!-- Final Score Panel -->
   <div class="final-score-panel" *ngIf="showFinalScore">
     <div class="final-score-content">
       <h2>¡Juego Terminado!</h2>
       <div class="final-details">
         <p><strong>Distancia:</strong> {{finalDistance}}</p>
         <p><strong>Puntos obtenidos:</strong> {{puntosTotales}}</p>
+        <div class="custom-mode-warning" *ngIf="gameMode === 'custom'">
+          ⚠️ Modo personalizado: Tu puntuación no se guardará en el leaderboard
+        </div>
       </div>
       
       <div class="name-input">

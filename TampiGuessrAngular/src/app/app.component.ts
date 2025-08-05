@@ -13,6 +13,11 @@ export class AppComponent {
   // Iconos SVG
   trophyIconHtml = trophyIcon(30, 30, 'trophy-icon');
 
+  // Variables para el modal de ajustes
+  showSettingsModal = false;
+  gameMode = 'normal'; // 'normal' o 'custom'
+  customRounds = 2; // Número de rondas para modo personalizado
+
   constructor(private router: Router) {
     // Constructor con router
   }
@@ -25,7 +30,14 @@ export class AppComponent {
   // Función para iniciar el juego
   startGame() {
     console.log('Iniciando juego...');
-    this.router.navigate(['/game']);
+    // Pasar configuración al juego si es necesario
+    if (this.gameMode === 'custom') {
+      // Aquí podrías pasar parámetros al componente del juego
+      // Por ejemplo, usando un servicio o query params
+      this.router.navigate(['/game'], { queryParams: { mode: 'custom', rounds: this.customRounds } });
+    } else {
+      this.router.navigate(['/game']);
+    }
   }
 
   // Función para mostrar el tutorial
@@ -37,7 +49,25 @@ export class AppComponent {
   // Función para mostrar configuración
   showSettings() {
     console.log('Mostrando configuración...');
-    alert('⚙️ CONFIGURACIÓN\n\n🔧 Próximas opciones disponibles:\n• Dificultad del juego (Fácil, Medio, Difícil)\n• Tiempo límite por ronda\n• Ubicaciones específicas de Tampico\n• Modo de juego (Clásico, Sin tiempo, Explorador)\n• Configuración de sonido y música\n• Idioma de la interfaz\n• Modo oscuro/claro\n\n🎮 Estas funciones estarán disponibles en la próxima versión.');
+    this.showSettingsModal = true;
+  }
+
+  // Función para cerrar el modal de configuración
+  closeSettings() {
+    this.showSettingsModal = false;
+  }
+
+  // Función para cambiar el modo de juego
+  setGameMode(mode: string) {
+    this.gameMode = mode;
+  }
+
+  // Función para cambiar el número de rondas personalizadas
+  onRoundsChange(event: any) {
+    const value = parseInt(event.target.value);
+    if (value >= 1 && value <= 10) {
+      this.customRounds = value;
+    }
   }
 
   // Función para ir al leaderboard

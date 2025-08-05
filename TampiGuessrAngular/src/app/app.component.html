@@ -38,5 +38,64 @@
   </div>
 </div>
 
+<!-- Modal de Configuración -->
+<div class="settings-modal-overlay" *ngIf="showSettingsModal" (click)="closeSettings()">
+  <div class="settings-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>⚙️ Configuración del Juego</h2>
+      <button class="close-btn" (click)="closeSettings()">✕</button>
+    </div>
+    
+    <div class="modal-content">
+      <div class="game-mode-section">
+        <h3>Modo de Juego</h3>
+        
+        <div class="mode-option" [class.selected]="gameMode === 'normal'" (click)="setGameMode('normal')">
+          <div class="mode-info">
+            <div class="mode-title">🎯 Normal</div>
+            <div class="mode-description">2 rondas • Puntuación guardada en leaderboard</div>
+          </div>
+          <div class="mode-radio">
+            <input type="radio" [checked]="gameMode === 'normal'" readonly>
+          </div>
+        </div>
+        
+        <div class="mode-option" [class.selected]="gameMode === 'custom'" (click)="setGameMode('custom')">
+          <div class="mode-info">
+            <div class="mode-title">🔧 Personalizado</div>
+            <div class="mode-description">Configura el número de rondas</div>
+          </div>
+          <div class="mode-radio">
+            <input type="radio" [checked]="gameMode === 'custom'" readonly>
+          </div>
+        </div>
+        
+        <!-- Configuración personalizada -->
+        <div class="custom-config" *ngIf="gameMode === 'custom'">
+          <div class="warning-message">
+            ⚠️ En modo personalizado, tu puntuación no se registrará en el leaderboard
+          </div>
+          
+          <div class="rounds-config">
+            <label for="rounds">Número de rondas:</label>
+            <input 
+              type="number" 
+              id="rounds" 
+              [value]="customRounds" 
+              (input)="onRoundsChange($event)"
+              min="1" 
+              max="10"
+              class="rounds-input">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="apply-btn" (click)="closeSettings()">Aplicar</button>
+    </div>
+  </div>
+</div>
+
 <!-- Router outlet para mostrar diferentes componentes -->
 <router-outlet></router-outlet>

@@ -8,7 +8,7 @@
 
 /* Header */
 .header {
-  background-color: #2c3e50;
+  background-color: #eb4343;
   color: white;
   padding: 15px 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -24,6 +24,14 @@
   font-size: 18px;
   font-weight: bold;
 }
+/* Minimal Game Container */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
 
 .score-text {
   color: #ecf0f1;
@@ -32,12 +40,28 @@
 /* Game Content */
 .game-content {
   display: flex;
+/* Header */
+.header {
+  background: #eb4343;
+  color: #fff;
+  padding: 18px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(235,67,67,0.08);
+}
   flex: 1;
   height: calc(100vh - 80px);
 }
 
 /* Street View Container */
 .street-view-container {
+/* Minimal info */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
   flex: 1;
   position: relative;
   border-right: 2px solid #34495e;
@@ -46,6 +70,14 @@
 .street-view {
   width: 100%;
   height: 100%;
+/* Minimal score */
+.score-info {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.score-text {
+  color: #fff;
+}
   background-color: #000;
 }
 
@@ -53,6 +85,13 @@
 .map-container {
   flex: 0 0 400px;
   display: flex;
+/* Minimal Game Content */
+.game-content {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 70px);
+  background: #fff;
+}
   flex-direction: column;
   background-color: #ecf0f1;
 }
@@ -65,9 +104,20 @@
 }
 
 /* Control Buttons */
+/* Minimal Street View */
+.street-view-container {
+  flex: 1;
+  position: relative;
+  border-right: 1px solid #eee;
+}
+.street-view {
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+}
 .control-buttons {
   padding: 20px;
-  background-color: #34495e;
+  background-color: #363636;
   display: flex;
   justify-content: center;
 }
@@ -79,6 +129,20 @@
   padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
+/* Minimal Map */
+.map-container {
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  border-left: 1px solid #eee;
+}
+.map {
+  flex: 1;
+  width: 100%;
+  min-height: 400px;
+  background: #f3f3f3;
+}
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -100,11 +164,39 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(44, 62, 80, 0.95);
+  background-color: rgba(40, 35, 35, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+/* Minimal Control Buttons */
+.control-buttons {
+  padding: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #eee;
+}
+.guess-btn {
+  background: #eb4343;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(235,67,67,0.08);
+}
+.guess-btn:hover:not(:disabled) {
+  background: #c92d2d;
+}
+.guess-btn:disabled {
+  background: #eee;
+  color: #bbb;
+  cursor: not-allowed;
+}
 }
 
 .final-score-content {
@@ -118,7 +210,7 @@
 }
 
 .final-score-content h2 {
-  color: #2c3e50;
+  color: #502c2c;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -134,7 +226,7 @@
 }
 
 .final-details strong {
-  color: #2c3e50;
+  color: #502c2c;
 }
 
 /* Name Input */
@@ -144,6 +236,44 @@
 
 .name-field {
   width: 100%;
+/* Minimal Final Score Panel */
+.final-score-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(235,67,67,0.97);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.final-score-content {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(235,67,67,0.10);
+  text-align: center;
+  max-width: 340px;
+  width: 95%;
+}
+.final-score-content h2 {
+  color: #eb4343;
+  margin-bottom: 18px;
+  font-size: 1.5rem;
+}
+.final-details {
+  margin-bottom: 18px;
+}
+.final-details p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #222;
+}
+.final-details strong {
+  color: #eb4343;
+}
   padding: 12px;
   border: 2px solid #bdc3c7;
   border-radius: 5px;
@@ -196,6 +326,62 @@
   background-color: #2980b9;
 }
 
+/* Minimal Name Input */
+.name-input {
+  margin-bottom: 18px;
+}
+.name-field {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #eb4343;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  background: #fafafa;
+  color: #222;
+}
+.name-field:focus {
+  outline: none;
+  border-color: #c92d2d;
+}
+.save-btn {
+  background: #eb4343;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+.save-btn:hover:not(:disabled) {
+  background: #c92d2d;
+}
+.save-btn:disabled {
+  background: #eee;
+  color: #bbb;
+  cursor: not-allowed;
+}
+.play-again-btn {
+  background: #fff;
+  color: #eb4343;
+  border: 1.5px solid #eb4343;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+.play-again-btn:hover {
+  background: #eb4343;
+  color: #fff;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .game-content {
@@ -215,4 +401,152 @@
   .map {
     min-height: 250px;
   }
+}
+
+/* Minimal Responsive Design */
+@media (max-width: 900px) {
+  .game-content {
+    flex-direction: column;
+  }
+  .street-view-container {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+  .map-container {
+    flex: 0 0 220px;
+    min-height: 220px;
+  }
+  .map {
+    min-height: 180px;
+  }
+  .final-score-content {
+    padding: 18px 6px;
+  }
+}
+
+/* Panel de Resultado de Ronda */
+.round-result-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(235, 67, 67, 0.199);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.round-result-content {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(235, 67, 67, 0.15);
+  text-align: center;
+  max-width: 380px;
+  width: 95%;
+}
+
+.round-result-content h3 {
+  color: #eb4343;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.round-details {
+  margin-bottom: 24px;
+}
+
+.round-details p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.round-details strong {
+  color: #eb4343;
+}
+
+.round-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.next-round-btn, .finish-game-btn {
+  background: #eb4343;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 3px 12px rgba(235, 67, 67, 0.2);
+}
+
+.next-round-btn:hover, .finish-game-btn:hover {
+  background: #c92d2d;
+  transform: translateY(-1px);
+}
+
+.finish-game-btn {
+  background: #fff;
+  color: #eb4343;
+  border: 2px solid #eb4343;
+}
+
+.finish-game-btn:hover {
+  background: #eb4343;
+  color: #fff;
+}
+
+/* Advertencia modo personalizado */
+.custom-mode-warning {
+  background: rgba(255, 193, 7, 0.1);
+  color: #ff8f00;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+/* Resultado simple de ronda */
+.round-result-simple {
+  padding: 16px;
+  background: #363636;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.round-result-simple p {
+  margin: 4px 0;
+  color: #333;
+}
+
+.round-result-simple strong {
+  color: #eb4343;
+}
+
+/* Botones de siguiente ronda y finalizar */
+.next-round-btn, .finish-game-btn {
+  background: #eb4343;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(235,67,67,0.08);
+}
+
+.next-round-btn:hover, .finish-game-btn:hover {
+  background: #c92d2d;
 }
